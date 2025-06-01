@@ -1,0 +1,20 @@
+graph TD
+    subgraph "Configuration Phase"
+        direction LR
+        U[User] -- Interacts with --> OH_UI[OpenHands UI]
+        OH_UI -- Navigates to --> Settings[Settings Screen]
+        Settings -- User inputs --> UserInputs[("Custom Endpoint URL, API Key, Model Name")]
+        UserInputs -- Saved as --> OH_Config[OpenHands Configuration]
+    end
+
+    subgraph "Request/Response Phase"
+        UserRequest[User makes a request via UI] --> OHC_Process[OpenHands Core: Processes request]
+        OHC_Process -- Utilizes --> LiteLLM_Lib[LiteLLM]
+        OH_Config -.->|Uses configuration| LiteLLM_Lib
+        LiteLLM_Lib -- Sends request to --> CustomEP[Custom OpenAI-Compatible Endpoint]
+        CustomEP -- Processes with --> LLM_Model[LLM @ Custom Endpoint]
+        LLM_Model -- Sends response --> CustomEP
+        CustomEP -- Forwards response --> LiteLLM_Lib
+        LiteLLM_Lib -- Forwards response --> OHC_Process
+        OHC_Process -- Presents response to --> UserResponse[User sees response in UI]
+    end

@@ -41,6 +41,14 @@ In essence, OpenHands, through LiteLLM, can easily connect to official OpenAI mo
 
 ---
 
+## Visual Workflow: OpenHands with a Custom Endpoint
+
+The following diagram illustrates the configuration steps and the request/response flow when OpenHands uses a custom OpenAI-compatible endpoint:
+
+![OpenHands Custom Endpoint Workflow](./workflow_diagram.svg)
+
+---
+
 # Prerequisites for Using a Custom OpenAI-Compatible Endpoint with OpenHands
 
 To configure OpenHands to use your own custom Large Language Model (LLM) setup, you'll need a few key pieces of information. This setup relies on your custom LLM service exposing an "OpenAI-compatible endpoint," meaning it communicates in the same way that OpenAI's official services do.
